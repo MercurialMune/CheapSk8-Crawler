@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register(PigiaPhone)
+admin.site.register(OlxPhone)
+admin.site.register(OlxWebsite)
+admin.site.register(PigiaWebsite)

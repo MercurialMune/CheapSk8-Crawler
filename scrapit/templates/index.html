@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<title>CheapSk8</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<style>
+body,h2, h1 {font-family: "Raleway", serif;}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('https://webgradients.com/public/webgradients_png/001%20Warm%20Flame.png');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  .myLink {display: none}
+}
+
+</style>
+<body>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-Grey">
+    <div class="w3-row">
+        <div class="">
+           <h1 class="w3-center">CheapSk8 Crawler</h1>
+            <h4 class="w3-center"><em>Search from any tab to find the best deal</em></h4><br><br>
+<div class="w3-display-container w3-content w3-hide-small">
+
+  <div class="w3-display-middle" >
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink " onclick="openLink(event, 'OLX');">OLX</button>
+      <button class="w3-bar-item w3-button tablink " onclick="openLink(event, 'Pigiame');">Pigiame</button>
+        <button class="w3-bar-item w3-button tablink " onclick="openLink(event, 'Jumia');">Jumia</button>
+      <button class="w3-bar-item w3-button tablink " onclick="openLink(event, 'Kilimall');">Kilimall</button>
+        <button class="w3-bar-item w3-button tablink " onclick="openLink(event, 'Cheki');">Cheki</button>
+    </div>
+
+    <div id="OLX" class="w3-container w3-transparent myLink">
+            <form action="{%url 'home'%}" role="search">
+          <input class="w3-input w3-border-bottom w3-transparent" type="text" name="olx"  placeholder="Search OLX...">
+            </form>
+    </div>
+    <div id="Pigiame" class="w3-container w3-transparent myLink">
+        <form action="{%url 'home'%}" role="search">
+      <input class="w3-input w3-border-bottom w3-transparent" type="text" name="pigia" placeholder="Search Pigiame...">
+        </form>
+    </div>
+       <div id="Jumia" class="w3-container w3-transparent myLink">
+            <form action="{%url 'home'%}" role="search">
+          <input class="w3-input w3-border-bottom w3-transparent" name="jumia"  type="text" placeholder="Search Jumia...">
+            </form>
+    </div>
+       <div id="Kilimall" class="w3-container w3-transparent myLink">
+            <form action="{%url 'home'%}" role="search">
+          <input class="w3-input w3-border-bottom w3-transparent" name="kili" type="text" placeholder="Search Kilimall...">
+            </form>
+    </div>
+       <div id="Cheki" class="w3-container w3-transparent myLink">
+            <form action="{%url 'home'%}" role="search">
+          <input class="w3-input w3-border-bottom w3-transparent" name="cheki" type="text" placeholder="Search Cheki...">
+            </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+    <div class="w3-row w3-twothird w3-display-middle w3-center" >
+        {% if olx_response%}
+        <table class="w3-table-all">
+    <thead>
+      <tr class="w3-light-grey">
+        <th>Phone Name</th>
+        <th>Price on OLX</th>
+        <th>Buy</th>
+      </tr>
+    </thead>
+        {%for response in olx_response%}
+    <tr>
+      <td>{{response.name}}</td>
+      <td>{{response.price}}</td>
+      <td><a href="{{response.link}}">Buy</a></td>
+    </tr>
+        {%endfor%}
+  </table>
+        {%elif pigia_response%}
+        <table class="w3-table-all">
+        <thead>
+          <tr class="w3-light-grey">
+            <th>Name</th>
+            <th>Price on Pigia Me</th>
+            <th>Buy</th>
+          </tr>
+        </thead>
+            {%for response in pigia_response%}
+        <tr>
+        <td>{{response.name}}</td>
+      <td>{{response.price}}</td>
+      <td><a href="{{response.link}}">Buy</a></td>
+        </tr>
+    {%endfor%}
+  </table>
+
+        {%else%}
+
+        <p>{{my_quote}}</p>
+
+        {%endif%}
+
+    </div>
+</div>
+<script>
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+document.getElementsByClassName("tablink")[0].click();
+</script>
+
+</body>
+</html>
