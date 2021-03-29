@@ -28,7 +28,7 @@ jsonpath-rw==1.4.0
 lxml==4.3.3
 oauthlib==3.0.1
 parsel==1.5.1
-Pillow==5.4.1
+Pillow==8.1.1
 ply==3.11
 psycopg2==2.7.7
 pyasn1==0.4.5
